@@ -7,23 +7,23 @@
     </head>
     <body>
         <h1>Add product of ATN-shop </h1>
-        <form action="/quotes" method="POST">
+        <form action="/AddProduct" method="POST">
             <input type="text" placeholder="name" name="name" />
-            <input type="text" placeholder="quote" name="quote" />
+            <input type="text" placeholder="price" name="price" />
             <button type="submit">Submit</button>
         </form>
 
-        <h2> Quotes </h2>
-        <ul class="quotes">
-            <!-- Loop through quotes -->
-            <% for(var i = 0; i < quotes.length; i++) {%>
-                <li class="quote">
+        <h2> Product </h2>
+        <ul class="Product">
+            <!-- Loop through Product -->
+            <% for(var i = 0; i < Product.length; i++) {%>
+                <li class="Product">
                     
-                        <!-- Output name from the iterated quote object -->
-                        <span><%= quotes[i].name %></span>:
-                        <!-- Output quote from the iterated quote object -->
-                        <span><%= quotes[i].quote %></span>
-                        <a href="/quotes/remove/<%= quotes[i]._id %>">Remove</a>
+                        <!-- Output name from the iterated price object -->
+                        <span><%= Product[i].name %></span>:
+                        <!-- Output price from the iterated price object -->
+                        <span><%= Product[i].price %></span>
+                        <a href="/Product/remove/<%= price[i]._id %>">Remove</a>
                 </li>
             <% } %>
         </ul>
