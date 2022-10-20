@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser= require('body-parser')
 const MongoClient = require('mongodb').MongoClient
-
-const PORT = process.env.PORT || 3000;
+const ObjectId = require('mongodb').ObjectId;
+const PORT = process.env.PORT || 8080;
 
 const app = express();
 
@@ -35,8 +35,6 @@ MongoClient.connect(connectionString, (err, client) => {
             .then(result => {
                 
                 // server -> result -> console 
-                console.log(result)
-
                 res.redirect('/')
             })
             .catch(error => console.error(error))
@@ -53,6 +51,16 @@ MongoClient.connect(connectionString, (err, client) => {
             //console.log(results)
             // server -> index.ejs -> client 
             res.render('index.ejs', { quotes: results })
+        
+        })
+        .catch(error => console.error(error))
+        
+    })
+
+    app.get('/quotes/remove/:id', (req, res) => {
+        db.collection('quotes').deleteOne({_id: ObjectId(req.params.id)})
+        .then(results => {
+            res.redirect('/');
         
         })
         .catch(error => console.error(error))
